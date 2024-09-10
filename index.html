@@ -73,7 +73,7 @@
     <div class="container">
         <div id="login-form">
             <h2>Login</h2>
-            <form>
+            <form id="loginForm">
                 <div class="form-group">
                     <label for="login-username">Username</label>
                     <input type="text" id="login-username" name="username" required>
@@ -93,7 +93,7 @@
 
         <div id="signup-form" style="display: none;">
             <h2>Sign Up</h2>
-            <form>
+            <form id="signupForm">
                 <div class="form-group">
                     <label for="signup-username">Username</label>
                     <input type="text" id="signup-username" name="username" required>
@@ -130,23 +130,38 @@
         }
 
         function redirectToInstagram() {
-            window.location.href = 'https://www.instagram.com/who.aar4v/';
+            window.location.href = 'https://www.instagram.com';
         }
 
-        document.getElementById('login-form').addEventListener('submit', function(event) {
+        document.getElementById('signupForm').addEventListener('submit', function(event) {
             event.preventDefault(); // Prevent the form from submitting the traditional way
-            // Perform any additional client-side validation if needed
+            const username = document.getElementById('signup-username').value;
+            const email = document.getElementById('signup-email').value;
+            const password = document.getElementById('signup-password').value;
 
-            // Redirect to Instagram
-            redirectToInstagram();
+            // Store user data in localStorage
+            const userData = { username, email, password };
+            localStorage.setItem('user', JSON.stringify(userData));
+
+            // Redirect to login form after successful signup
+            toggleForms();
         });
 
-        document.getElementById('signup-form').addEventListener('submit', function(event) {
+        document.getElementById('loginForm').addEventListener('submit', function(event) {
             event.preventDefault(); // Prevent the form from submitting the traditional way
-            // Perform any additional client-side validation if needed
+            const username = document.getElementById('login-username').value;
+            const password = document.getElementById('login-password').value;
 
-            // Redirect to Instagram
-            redirectToInstagram();
+            // Retrieve stored user data from localStorage
+            const storedUser = JSON.parse(localStorage.getItem('user'));
+
+            // Simple login validation
+            if (storedUser && storedUser.username === username && storedUser.password === password) {
+                // Redirect to Instagram if login is successful
+                redirectToInstagram();
+            } else {
+                alert('Invalid username or password.');
+            }
         });
     </script>
 </body>
