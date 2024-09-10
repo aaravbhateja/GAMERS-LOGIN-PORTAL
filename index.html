@@ -23,6 +23,7 @@
             width: 90%;
             max-width: 400px;
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
+            box-sizing: border-box; /* Ensure padding is included in width */
         }
         h2 {
             margin: 0 0 20px;
@@ -44,6 +45,7 @@
             border-radius: 5px;
             background: #333;
             color: #fff;
+            box-sizing: border-box; /* Ensure padding is included in width */
         }
         .form-group input[type="submit"] {
             background: #28a745;
@@ -66,6 +68,27 @@
         }
         .toggle-links a:hover {
             text-decoration: underline;
+        }
+
+        /* Media Queries for Responsiveness */
+        @media (max-width: 768px) {
+            .container {
+                padding: 15px;
+                max-width: 100%;
+            }
+        }
+        @media (max-width: 480px) {
+            .container {
+                padding: 10px;
+            }
+            .form-group input {
+                font-size: 14px;
+                padding: 8px;
+            }
+            .form-group input[type="submit"] {
+                font-size: 14px;
+                padding: 10px;
+            }
         }
     </style>
 </head>
@@ -130,7 +153,7 @@
         }
 
         function redirectToInstagram() {
-            window.location.href = 'https://www.instagram.com/who.aar4v/';
+            window.location.href = 'https://www.instagram.com';
         }
 
         document.getElementById('signupForm').addEventListener('submit', function(event) {
