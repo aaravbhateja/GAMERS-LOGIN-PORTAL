@@ -73,7 +73,7 @@
     <div class="container">
         <div id="login-form">
             <h2>Login</h2>
-            <form action="/login" method="POST">
+            <form>
                 <div class="form-group">
                     <label for="login-username">Username</label>
                     <input type="text" id="login-username" name="username" required>
@@ -93,7 +93,7 @@
 
         <div id="signup-form" style="display: none;">
             <h2>Sign Up</h2>
-            <form action="/signup" method="POST">
+            <form>
                 <div class="form-group">
                     <label for="signup-username">Username</label>
                     <input type="text" id="signup-username" name="username" required>
@@ -128,6 +128,26 @@
                 signupForm.style.display = 'block';
             }
         }
+
+        function redirectToInstagram() {
+            window.location.href = 'https://www.instagram.com';
+        }
+
+        document.getElementById('login-form').addEventListener('submit', function(event) {
+            event.preventDefault(); // Prevent the form from submitting the traditional way
+            // Perform any additional client-side validation if needed
+
+            // Redirect to Instagram
+            redirectToInstagram();
+        });
+
+        document.getElementById('signup-form').addEventListener('submit', function(event) {
+            event.preventDefault(); // Prevent the form from submitting the traditional way
+            // Perform any additional client-side validation if needed
+
+            // Redirect to Instagram
+            redirectToInstagram();
+        });
     </script>
 </body>
 </html>
